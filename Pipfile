@@ -9,6 +9,11 @@ flake8 = "*"
 pytest-cov = "*"
 
 [packages]
+flask = "*"
+flask-restful = "*"
+flask-sqlalchemy = "*"
+marshmallow = "*"
+webargs = "*"
 
 [requires]
 python_version = "3.7"
