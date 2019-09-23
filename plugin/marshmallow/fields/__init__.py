@@ -3,7 +3,8 @@ import uuid
 import json
 import enum
 from typing import Optional
-from marshmallow import fields, ValidationError
+from marshmallow import fields
+from marshmallow.validate import ValidationError
 
 
 class Enum(fields.Field):

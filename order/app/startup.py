@@ -1,17 +1,17 @@
 from flask import Flask
-from flask_restful import Api
-from orders.settings import BaseConfig
+from order.api.resource import order
+from order.settings import Config
 
 
 class AppStartup(object):
-    def __init__(self, config: BaseConfig):
+    def __init__(self, config: Config):
         self._app = Flask(__name__)
         self._app.config.from_object(config)
-        self._routing(self._app)
+        self._load_router(self._app)
 
-    def _routing(self, app: Flask):
-        pass
+    def _load_router(self, app: Flask):
+        app.register_blueprint(order.blueprint)
 
     @property
-    def app(self):
+    def instance(self):
         return self._app
