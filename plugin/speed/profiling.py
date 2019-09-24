@@ -13,8 +13,8 @@ def profiling(func):
         result = func(*args, **kwargs)
         time_end = timeit.default_timer()
         print("------------------------------------------------------")
-        print("［ function name ］: ", func.__name__)
-        print("［  performance  ］: ", (time_end - time_start)), "secs"
+        print(f"［ function name ］: {func.__name__}")
+        print(f"［  performance  ］: {time_end - time_start} ms")
         print("------------------------------------------------------")
         return result
 

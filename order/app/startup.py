@@ -1,3 +1,5 @@
+import os
+import sys
 from flask import Flask
 from order.api.resource import order
 from order.settings import Config

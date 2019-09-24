@@ -11,6 +11,5 @@ class EndpointMapper(object):
 
 
 class Config(object):
-    DEBUG = True
     BLEUPRINTS = BlueprintMapper
     ENDPOINTS = EndpointMapper
