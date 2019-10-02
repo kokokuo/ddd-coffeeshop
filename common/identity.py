@@ -1,10 +1,12 @@
-from .valueobj import ValueObject
+import abc
 from typing import TypeVar, Type, cast
 from datetime import datetime
+from .valueobj import ValueObject
 from plugin.date import formatter
 
 
 class EntityId(ValueObject):
+    @abc.abstractmethod
     def __init__(self, code: str, serial_no: int, occur_date: datetime) -> None:
         self._code = code
         self._serial_no = serial_no
@@ -23,9 +25,8 @@ class EntityId(ValueObject):
         return self._occur_date
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, self.__class__):
+        if type(self) is type(other):
             return False
-
         other = cast(EntityId, other)
         return (self.code, self.occur_date, self.serial_no) == \
             (other.code, other.occur_date, other.serial_no)
@@ -34,6 +35,7 @@ class EntityId(ValueObject):
         return hash((self.code, self.occur_date, self.serial_no))
 
     def __str__(self):
+        # 取得字串型別的 Entity Id
         occur_date = self.occur_date.strftime("%Y%m%d")
         return "{code}-{date}-{sn}" \
             .format(code=self.code, date=self.occur_date, sn=self.serial_no)

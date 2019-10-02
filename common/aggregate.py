@@ -1,5 +1,5 @@
-import abc
+from .enity import Entity
 
 
-class AggregateRoot(abc.ABC):
+class AggregateRoot(Entity):
     pass

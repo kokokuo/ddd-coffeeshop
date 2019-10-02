@@ -1,10 +1,11 @@
 import abc
 import uuid
 from datetime import datetime
-from typing import Optional
+from typing import Optional, cast, TypeVar
 
 
 class DomainEvent(abc.ABC):
+    @abc.abstractmethod
     def __init__(self, occur_date: Optional[datetime] = None):
         self._event_id = uuid.uuid1()
         self._occur_date = occur_date if occur_date else datetime.utcnow()
@@ -18,8 +19,7 @@ class DomainEvent(abc.ABC):
         return self._occur_date
 
     def __eq__(self, other: object) -> bool:
-        if not isinstance(other, self.__class__):
+        if type(self) != type(other):
             return False
-        if self.event_id == other.event_id and self.occur_date == self.occur_date:
-            return True
-        return False
+        other = cast(DomainEvent, other)
+        return (self.event_id, self.occur_date) == (other.event_id, other.occur_date)
