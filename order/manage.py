@@ -17,7 +17,7 @@ from order.settings import config
               help="Gunicorn worker mode")
 def gunicorn(port, worker, mode):
     """Run production server provided by Gunicorn"""
-    FlaskGunicorn(application).run()
+    FlaskGunicorn(application.instance).run()
 
 
 @click.command()
