@@ -13,3 +13,5 @@ class EndpointMapper(object):
 class Config(object):
     BLEUPRINTS = BlueprintMapper
     ENDPOINTS = EndpointMapper
+    SERVER_PORT = 8000
+
