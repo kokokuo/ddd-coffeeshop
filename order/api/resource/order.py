@@ -4,6 +4,9 @@ from flask_restful import Resource, Api
 from order.settings import config
 from order.api.request.order import CreateOrderReqValidator
 from order.api.response.order import CreatedOrderResp
+from order.app.service.order import order_service
+from order.app.assembler.command.order import CreateOrderAssembler
+from order.app.dto.command.order import CreateOrderCommand
 from plugin.webargs import parse_reqs
 from plugin.speed import profiling
 
@@ -16,6 +19,8 @@ class OrdersResource(Resource):
     @profiling
     @parse_reqs(CreateOrderReqValidator())
     def post(self, reqargs: dict):
+        command = CreateOrderAssembler.from_request(reqargs)
+        result = order_service.create_order(command)
         resp = ("OK", HTTPStatus.OK)
         return resp
 
