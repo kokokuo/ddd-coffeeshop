@@ -13,18 +13,20 @@ class Order(AggregateRoot):
                  table_no: str,
                  items: List[OrderItem],
                  status: OrderStatus,
+                 takeout: bool,
                  createtd_at: datetime,
                  modified_at: Optional[datetime] = None) -> None:
         super(Order, self).__init__(order_id)
         self._table_no = table_no
         self._items = items
         self._status = status
+        self._takeout = takeout
         self._createtd_at = createtd_at
         self._modified_at = modified_at
 
     @classmethod
-    def create(cls, order_id: OrderId, table_no: str, items: List[OrderItem]) -> "Order":
-        return cls(order_id, table_no, items, OrderStatus.INITIAL, datetime.utcnow())
+    def create(cls, order_id: OrderId, table_no: str, takeout: bool, items: List[OrderItem]) -> "Order":
+        return cls(order_id, table_no, items, OrderStatus.INITIAL, takeout, datetime.utcnow())
 
     @property
     def id(self) -> OrderId:
@@ -41,6 +43,10 @@ class Order(AggregateRoot):
     @property
     def status(self) -> OrderStatus:
         return self._status
+
+    @property
+    def takeout(self) -> bool:
+        return self._takeout
 
     @property
     def total_fee(self) -> Decimal:
