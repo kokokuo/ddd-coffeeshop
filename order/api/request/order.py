@@ -13,6 +13,7 @@ class OrderItemValidator(Schema):
 
 class CreateOrderReqValidator(Schema):
     table_no = fields.Str(data_key="table_no", required=True)
+    takeout = fields.Boolean(data_key="takeout", required=True, default=True)
     # "many" parameter could achieve nested of list
     items = fields.Nested(OrderItemValidator, many=True)
 

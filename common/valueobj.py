@@ -5,8 +5,8 @@ class ValueObject(abc.ABC):
 
     @abc.abstractmethod
     def __eq__(self, other: object):
-        raise NotImplementedError()
+        raise NotImplementedError("Please implement __equal__")
 
     @abc.abstractmethod
     def __hash__(self):
-        raise NotImplementedError()
+        raise NotImplementedError("Please implement __hash__")
