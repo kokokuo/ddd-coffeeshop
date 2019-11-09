@@ -4,7 +4,7 @@ from order.app.dto.results.order import CreatedOrderResult, CreatedOrderItemResu
 
 class CreatedOrderAssembler(object):
     @classmethod
-    def to_result(cls, order_do: Order) -> None:
+    def to_result(cls, order: Order) -> CreatedOrderResult:
         item: OrderItem
         items = [
             CreatedOrderItemResult(
@@ -12,12 +12,14 @@ class CreatedOrderAssembler(object):
                 quantity=item.quantity,
                 price=item.price,
                 fee=item.fee
-            ) for item in order_do.items
+            ) for item in order.items
         ]
 
         return CreatedOrderResult(
-            id=order_do.id,
-            status=order_do.status,
+            id=order.id,
+            status=order.status.value,
             items=items,
-            created_date=order_do.createtd_at,
-            modified_date=order_do.modified_at)
+            total_fee=order.total_fee,
+            takeout=order.takeout,
+            created_date=order.createtd_at,
+            modified_date=order.modified_at)
