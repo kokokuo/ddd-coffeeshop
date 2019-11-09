@@ -1,5 +1,5 @@
 import abc
-from .identity import EntityId
+from .id import EntityId
 
 
 class Entity(abc.ABC):

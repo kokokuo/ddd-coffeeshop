@@ -7,7 +7,7 @@ from decimal import Decimal
 class OrderItem(ValueObject):
     def __init__(self,
                  product_id: str,
-                 quantity: str,
+                 quantity: int,
                  price: Decimal) -> None:
 
         self._product_id = product_id
@@ -15,11 +15,11 @@ class OrderItem(ValueObject):
         self._price = price
 
     @property
-    def product_id(self):
+    def product_id(self) -> str:
         return self._product_id
 
     @property
-    def quantity(self):
+    def quantity(self) -> int:
         return self._quantity
 
     @property
@@ -27,7 +27,7 @@ class OrderItem(ValueObject):
         return self.price * self.quantity
 
     @property
-    def price(self):
+    def price(self) -> Decimal:
         return self._price
 
     def __eq__(self, other: object):

@@ -9,8 +9,8 @@ class EntityId(ValueObject):
     @abc.abstractmethod
     def __init__(self, code: str, serial_no: int, occur_date: datetime) -> None:
         self._code = code
+        # TODO: 客製化 Error Code 與 Message
         if serial_no < 0:
-            # TODO: 客製化錯誤訊息與例外代碼
             raise ValueError("Serial No must larger than 0.")
         self._serial_no = serial_no
         self._occur_date = occur_date
