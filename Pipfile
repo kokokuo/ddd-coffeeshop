@@ -15,6 +15,7 @@ flask-sqlalchemy = "*"
 marshmallow = "*"
 webargs = "*"
 gunicorn = "*"
+pymysql = "*"
 
 [requires]
 python_version = "3.7"
