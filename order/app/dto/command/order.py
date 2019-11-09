@@ -13,4 +13,5 @@ class CreateOrderItemCommand(object):
 @dataclass(frozen=True)
 class CreateOrderCommand(object):
     table_no: str
+    takeout: bool
     items: List[CreateOrderItemCommand]
