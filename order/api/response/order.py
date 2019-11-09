@@ -14,6 +14,7 @@ class OrderItemResp(DumpSchema):
 
 class CreatedOrderResp(DumpSchema):
     id = fields.Str(data_key='id', required=True)
+    total_fee = fields.Decimal(data_key="total_fee", required=True)
     status = fields.Str(data_key='status', required=True)
     items = fields.Nested(OrderItemResp, data_key="items", many=True, required=True)
     created_at = fields.DateTime(data_key="created_at", many=True, required=True)

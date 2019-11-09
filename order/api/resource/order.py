@@ -21,16 +21,16 @@ class OrdersResource(Resource):
     def post(self, reqargs: dict):
         command = CreateOrderAssembler.from_request(reqargs)
         result = order_service.create_order(command)
-        resp = ("OK", HTTPStatus.OK)
-        return resp
+        response = CreatedOrderResp().dump(result).data
+        return response, HTTPStatus.OK
 
 
 class OrderResource(Resource):
 
     @profiling
     def get(self, id: int):
-        resp = ("OK", HTTPStatus.OK)
-        return resp
+        response = ("OK", HTTPStatus.OK)
+        return response
 
 
 api.add_resource(OrdersResource, "/orders", config.ENDPOINTS.ORDERS_API)
