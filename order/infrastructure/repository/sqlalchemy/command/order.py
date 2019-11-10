@@ -49,11 +49,14 @@ class OrderRepository(IOrderRepository):
             OrderTable.mark_deleted == false()
         )
         order_table: OrderTable = query.scalar()
-        # TODO: 補上 Not Found Expcetion
+        # TODO: 改為自定義的 Exception
+        if order_table is None:
+            raise Exception("Order Not Found")
+
         order = self._assemble_do(order_table)
         return order
 
-    def save(self, order: Order) -> Order:
+    def save(self, order: Order) -> bool:
         item: OrderItem
         items = [
             {
@@ -78,7 +81,7 @@ class OrderRepository(IOrderRepository):
         self._session.add(order_table)
         self._session.flush()
         self._session.add()
-        return order
+        return True
 
 
 order_repository = OrderRepository(dbo.session)

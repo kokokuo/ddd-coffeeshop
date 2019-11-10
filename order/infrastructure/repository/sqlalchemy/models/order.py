@@ -11,8 +11,8 @@ class OrderTable(SystemInfo):
     table_no = dbo.Column(dbo.String(3), nullable=False)
     status = dbo.Column(dbo.String(32), nullable=False)
     items = dbo.Column(dbo.UnicodeText, nullable=False)
-    total_fee = dbo.Colum(dbo.Numeric(12, 2), nullable=False)
-    takeout = dbo.Colum(dbo.Boolean, nullable=False, default=True)
+    total_fee = dbo.Column(dbo.Numeric(12, 2), nullable=False)
+    takeout = dbo.Column(dbo.Boolean, nullable=False, default=True)
 
     def load_items(self) -> List[Dict[str, str]]:
         return json.loads(self.items)

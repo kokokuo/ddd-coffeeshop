@@ -18,7 +18,7 @@ class OrderService(object):
             order_id: OrderId = self._order_repo.generate_id()
             # TODO: 改成從 Repository 做 Product Id 的檢查，並透過一個 OrderItemFactory 建立 OrderItem
             item: CreateOrderItemCommand
-            
+
             items = [
                 OrderItem(
                     item.product_id,
