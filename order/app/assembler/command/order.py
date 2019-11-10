@@ -7,4 +7,4 @@ class CreateOrderAssembler(object):
     def from_request(cls, reqargs: dict) -> CreateOrderCommand:
         item_args = reqargs["items"]
         reqargs["items"] = [CreateOrderItemCommand(**item) for item in item_args]
-        return CreateOrderItemCommand(**reqargs)
+        return CreateOrderCommand(**reqargs)

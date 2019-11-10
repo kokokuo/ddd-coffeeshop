@@ -34,4 +34,4 @@ class OrderResource(Resource):
 
 
 api.add_resource(OrdersResource, "/orders", config.ENDPOINTS.ORDERS_API)
-api.add_resource(OrderResource, "/orders/<id>", config.ENDPOINTS.ORDERS_API)
+api.add_resource(OrderResource, "/orders/<id>", config.ENDPOINTS.ORDER_API)
